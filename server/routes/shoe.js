@@ -38,7 +38,7 @@ router.post('/', async (req, res,next) => {
 router.delete('/:id', async (req, res) => {
   const shoe = await Shoe.findByPk(req.params.id);
   if (!shoe) {
-    return res.status(404).send('Item not found');
+    return res.status(404).send('Shoe not found');
   }
   await shoe.destroy();
   res.send('Shoe deleted');
@@ -49,7 +49,7 @@ router.delete('/:id', async (req, res) => {
 router.put('/:id', async (req, res) => {
   const shoe = await Shoe.findByPk(req.params.id);
   if (!shoe) {
-    return res.status(404).send('Item not found');
+    return res.status(404).send('Shoe not found');
   }
   shoe.name = req.body.name;
   shoe.price = req.body.price;
