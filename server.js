@@ -1,8 +1,18 @@
-const app = require("./src/app");
-const { db } = require("./db/connection")
-const port = 3000;
+const app = require("./server/app");
+const { db } = require("./server/models");
 
-app.listen(port, () => {
-    db.sync();
-    console.log(`Listening at http://localhost:${port}/musicians`)
-})
+const PORT = process.env.PORT || 3000;
+
+const init = async () => {
+  try {
+    await db.sync();
+
+    app.listen(PORT, () => {
+      console.log(`Server listening at http://localhost:${PORT}`);
+    });
+  } catch (error) {
+    console.error('Error starting server:', error)
+  }
+};
+
+init();

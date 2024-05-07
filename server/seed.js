@@ -10,7 +10,7 @@ const seed = async () => {
         await sequelize.sync({ force: true });
     
         // insert data
-        await Promise.all(shoes.map(shoe => Shoe.create(shoe)));
+        await Promise.all(shoe.map(shoe => Shoe.create(shoe)));
 
 
         console.log("db populated!");
