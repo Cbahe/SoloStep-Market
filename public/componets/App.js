@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { ShoeList } from './ShoeList';
+import SignIn from './signin';
+import signup from './signup';
 // import and prepend the api url to any fetch calls
 import apiURL from '../api';
 
@@ -42,7 +44,7 @@ async function onDelete(slug){
 	}
 
 	useEffect(() => {
-		fetchItems();
+		fetchShoe();
 	}, [data]);
 
 	function handleItemClick(slug) {
@@ -58,7 +60,7 @@ async function onDelete(slug){
 		<main>	
       <h1>SoloShoe Market</h1>
 			<h2>All things Shoe</h2>
-			{selItem ? (
+			{sellShoe ? (
 				<div className="shoe-detail">
     <h3>Name: {sellShoe.name}</h3>
     <h4>Price: {sellShoe.price}</h4>
@@ -70,7 +72,7 @@ async function onDelete(slug){
 						  </div>
 			) : (
 				<>
-				<ShoeListList items={shoe} onTitleClick={handleItemClick} />
+				<ShoeList items={shoe} onTitleClick={handleItemClick} />
 			
 				</>
 			)}
