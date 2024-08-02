@@ -1,5 +1,5 @@
 {
-  "name": "solostep-market",
+  "name": "solostep-market-server",
   "version": "1.0.0",
   "scripts": {
     "test": "jest",
