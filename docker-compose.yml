@@ -1,0 +1,9 @@
+services:
+  public:
+    build: ./public
+    ports:
+      - "1234:1234"
+  server:
+    build: ./server
+    ports:
+      - "3000:3000"
