@@ -1,7 +1,7 @@
 
 FROM node
 
-WORKDIR /index
+WORKDIR /index.html
 
 COPY . .
 
