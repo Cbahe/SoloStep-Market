@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { ShoeList } from './ShoeList.js';
-import SignIn from './signin';
-import SignUp from './signup';
+import SignIn from './signin.js';
+import SignUp from './signup.js';
 
 
 export const App = () => {
