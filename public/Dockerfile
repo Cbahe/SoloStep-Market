@@ -8,5 +8,5 @@ COPY . .
 
 RUN npm run build  # Ensure build command is executed
 
-EXPOSE 3000
+EXPOSE 1234
 CMD [ "node", "server.js" ]

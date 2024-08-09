@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SignIn from './signin'; // Import component, not a function
 import SignUp from './signup'; // Import component, not a function
-import ShoeList from './ShoeList'; // Ensure this import is correct
+import {ShoeList} from './ShoeList'; // Ensure this import is correct
 import apiURL from '../api'
 
 

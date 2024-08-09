@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shoe } from './Shoe'; // Assuming you have a Shoe component
+import { Shoe } from './Shoe';
 
 export const ShoeList = ({ shoes }) => {
   return (
