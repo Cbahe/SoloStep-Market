@@ -1,81 +1,83 @@
 import React, { useState, useEffect } from 'react';
-import SignIn from './signin.js';
-import SignUp from './signup.js';
+import SignIn from './SignIn'; // Import component, not a function
+import SignUp from './SignUp'; // Import component, not a function
+import ShoeList from './ShoeList'; // Ensure this import is correct
 
+const apiURL = 'http://example.com/api'; // Define your API URL
 
 export const App = () => {
+  const [shoe, setShoe] = useState([]);
+  const [sellShoe, setSellShoe] = useState(null);
 
-	const [shoe, setShoe] = useState([]);
-	const [data, setData] = useState([]);
-	const [sellShoe, setSellShoe] = useState(null);
+  // Fetch shoe data
+  async function fetchShoe() {
+    try {
+      const response = await fetch(`${apiURL}/shoe`);
+      const shoeData = await response.json();
+      setShoe(shoeData);
+    } catch (err) {
+      console.log("Oh no, an error! ", err);
+    }
+  }
 
+  // Fetch individual shoe details
+  async function clickHandler(slug) {
+    try {
+      const res = await fetch(`${apiURL}/shoe/${slug}`);
+      const data = await res.json();
+      setSellShoe(data);
+    } catch (err) {
+      console.log('Oh no, an error! ', err);
+    }
+  }
 
-	async function fetchShoe(){
-		try {
-			const response = await fetch(`${apiURL}/shoe`);
-			const shoeData = await response.json();
-			
-			setShoe(shoeData);
-		} catch (err) {
-			console.log("Oh no an error! ", err)
-		}
-	}
+  // Delete a shoe
+  async function onDelete(slug) {
+    try {
+      await fetch(`${apiURL}/shoe/${slug}`, {
+        method: "DELETE"
+      });
+      fetchShoe(); // Refresh the list after deletion
+    } catch (error) {
+      console.log('Cannot delete', error);
+    }
+  }
 
-	async function clickHandler(slug) {
-		try {
-		const res = await fetch(`${apiURL}/shoe/${slug}`)
-		const data = await res.json();
-		setSellShoe(data)
-	  } catch (err) {
-		console.log('Oh no an error! ', err)
-	  }
-	}
-async function onDelete(slug){
-	try{
-		const res = await fetch (`${apiURL}/shoe/${slug}`,{
-			method:"DELETE"
-		})
-	}
-		catch(error){
-			console.log('can not delete',error)
-		}
-	}
+  useEffect(() => {
+    fetchShoe();
+  }, []);
 
-	useEffect(() => {
-		fetchShoe();
-	}, [data]);
+  function handleItemClick(slug) {
+    clickHandler(slug);
+  }
 
-	function handleItemClick(slug) {
-		clickHandler(slug)
-	  }
-	function handleBack() {
-		setSellShoe(null)
-	  }
-	async function deleteItem(shoe){
-			await onDelete(shoe.id);
-	}
-	return (
-		<main>	
+  function handleBack() {
+    setSellShoe(null);
+  }
+
+  async function deleteItem(shoe) {
+    await onDelete(shoe.id);
+  }
+
+  return (
+    <main>
       <h1>SoloShoe Market</h1>
-			<h2>All things Shoe</h2>
-            <button onClick={SignUp}>Sign Up</button>
-            <button onClick={SignIn}>Sign In</button>
-			{sellShoe ? (
-				<div className="shoe-detail">
-    <h3>Name: {sellShoe.name}</h3>
-    <h4>Price: {sellShoe.price}</h4>
-    <h4>Size:{sellShoe.size}</h4>
-    <h4>Category: {sellShoe.category}</h4>
-	<img src={sellShoe.image} alt={sellShoe.name} />
-	<button onClick={handleBack}>Back to Shoe Shop</button>
-	<button onClick= {() => deleteItem(selItem)} >Delete Item</button>
-						  </div>
-			) : (
-				<>
-				<ShoeList items={shoe} onTitleClick={handleItemClick} />
-			
-				</>
-			)}
-		</main>
-	)
-}
+      <h2>All things Shoe</h2>
+      <SignUp />
+      <SignIn />
+      {sellShoe ? (
+        <div className="shoe-detail">
+          <h3>Name: {sellShoe.name}</h3>
+          <h4>Price: {sellShoe.price}</h4>
+          <h4>Size: {sellShoe.size}</h4>
+          <h4>Category: {sellShoe.category}</h4>
+          <img src={sellShoe.image} alt={sellShoe.name} />
+          <button onClick={handleBack}>Back to Shoe Shop</button>
+          <button onClick={() => deleteItem(sellShoe)}>Delete Item</button>
+        </div>
+      ) : (
+        <ShoeList items={shoe} onTitleClick={handleItemClick} />
+      )}
+    </main>
+  );
+};
