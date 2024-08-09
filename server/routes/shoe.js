@@ -2,27 +2,21 @@ const { Router } = require("express");
 const router = Router();
 const { Shoe } = require("../models");
 
-// GET /shoe
-router.get("/", async (req, res, next) => {
-  try {
-    const shoe = await Shoe.findAll();
-    res.send(shoe);
-  } catch (error) {
-    next(error);
+// GET /api/shoe - Fetch all shoes
+router.get('/', (req, res) => {
+  res.json(shoes);
+});
+ 
+// GET /api/shoe/:id - Fetch shoe details by ID
+router.get('/:id', (req, res) => {
+  const shoeId = parseInt(req.params.id, 10);
+  const shoe = shoes.find(s => s.id === shoeId);
+  if (shoe) {
+    res.json(shoe);
+  } else {
+    res.status(404).json({ message: 'Shoe not found' });
   }
 });
-router.get("/:id", async (req, res, next) => {
-  try {
-      const shoe = await Shoe.findByPk(req.params.id);
-      if (!shoe) {
-          throw new Error("No shoe found")
-      }
-      res.json(shoe)
-  } catch (error) {
-      next(error)
-  }
-})
-
 // CREATE /shoe
 router.post('/', async (req, res,next) => {
  try { 

@@ -1,14 +1,15 @@
+import React from "react";
 import SignIn from "./pages/signin";
 import SignUp from "./pages/signup";
-import App from "./pages/main";
+import { ShoeList } from "./pages/ShoeList"
 
-const router = createBrowserRouter([
-  {
-    path: '/',
-    children: [
-      { path: '/main', element: <App /> },
-      { path: '/signin', element: <SignIn /> },
-      { path: '/signup', element: <SignUp /> },
-    ],
-  },
-]);
+export const App = () => {
+  return(
+    <div>
+      <ShoeList/>
+      <SignIn/>
+      <SignUp/>
+    </div>
+  )
+}
+ 
