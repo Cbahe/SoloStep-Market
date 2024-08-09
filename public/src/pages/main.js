@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import SignIn from './SignIn'; // Import component, not a function
 import SignUp from './SignUp'; // Import component, not a function
 import ShoeList from './ShoeList'; // Ensure this import is correct
+import apiURL from '../api'
 
-const apiURL = 'http://example.com/api'; // Define your API URL
 
 export const App = () => {
   const [shoe, setShoe] = useState([]);
