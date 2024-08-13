@@ -2,6 +2,7 @@ const { Router } = require("express");
 const router = Router();
 const { Shoe } = require("../models");
 
+
 // GET /api/shoe - Fetch all shoes
 router.get('/', (req, res) => {
   res.json(shoes);
