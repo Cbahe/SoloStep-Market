@@ -19,7 +19,7 @@ const router = createBrowserRouter([
                 path: "signup",
                 Element: <SignUp />,
             }, {
-                path: "sheo",
+                path: "shoe",
                 Element: <ShoeList />,
             },
         ],
