@@ -10,6 +10,6 @@ export const App = () => {
       <SignIn/>
       <SignUp/>
     </div>
-  )
-}
+  );
+};
  
