@@ -1,11 +1,11 @@
 const { Router } = require("express");
 const router = Router();
-const { Shoe } = require("../models");
+const { shoe } = require("../models");
 
 
 // GET /api/shoe - Fetch all shoes
 router.get('/', (req, res) => {
-  res.json(shoes);
+  res.json(shoe);
 });
  
 // GET /api/shoe/:id - Fetch shoe details by ID
