@@ -1,17 +1,17 @@
 const { Router } = require("express");
 const router = Router();
-const { shoe } = require("../models");
+const { Shoe } = require("../models");
 
 
 // GET /api/shoe - Fetch all shoes
 router.get('/', (req, res) => {
-  res.json(shoe);
+  res.json(Shoe);
 });
  
 // GET /api/shoe/:id - Fetch shoe details by ID
 router.get('/:id', (req, res) => {
   const shoeId = parseInt(req.params.id, 10);
-  const shoe = shoes.find(s => s.id === shoeId);
+  const shoe = Shoes.find(s => s.id === shoeId);
   if (shoe) {
     res.json(shoe);
   } else {

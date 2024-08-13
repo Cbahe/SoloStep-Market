@@ -1,7 +1,7 @@
 const {Sequelize} = require('sequelize')
 const {sequelize} = require('../db')
 
-const shoe = sequelize.define("shoe", {
+const Shoe = sequelize.define("shoe", {
   name: Sequelize.STRING,
   price: Sequelize.FLOAT,
   size: Sequelize.FLOAT,
