@@ -3,6 +3,8 @@ services:
     build: ./public
     ports:
       - "1234:1234"
+    depends_on:
+      - server
   server:
     build: ./server
     ports:

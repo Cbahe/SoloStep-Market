@@ -4,9 +4,14 @@ WORKDIR /app
 
 COPY package*.json ./
 RUN npm install
+
 COPY . .
 
-RUN npm run build  # Ensure build command is executed
+RUN npm run build  
+
+FROM nginx:alpine
+
+COPY --from=build /app/dist /usr/share/nginx/html
 
 EXPOSE 1234
-CMD [ "node", "npm start" ]
+CMD [ "nginx", "-g", "daemon off;" ]
