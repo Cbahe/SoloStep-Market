@@ -4,6 +4,6 @@ const app = express();
 const router = require('./routes/shoe')
 
 app.use(express.json());
-app.use("/api/shoe", router);
+app.use("/shoe", router);
 
 module.exports = app;
