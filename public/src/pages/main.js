@@ -5,7 +5,7 @@ import {ShoeList} from './ShoeList';
 import apiURL from '../api'
 
 
-export const App = () => {
+export const Main = () => {
   const [shoe, setShoe] = useState([]);
   const [sellShoe, setSellShoe] = useState(null);
 
