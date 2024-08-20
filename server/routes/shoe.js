@@ -3,21 +3,30 @@ const router = Router();
 const { Shoe } = require("../models");
 
 
-// GET /api/shoe - Fetch all shoes
-router.get('/', (req, res) => {
-  res.json(Shoe);
-});
- 
-// GET /api/shoe/:id - Fetch shoe details by ID
-router.get('/:id', (req, res) => {
-  const shoeId = parseInt(req.params.id, 10);
-  const shoe = Shoe.findAll(s => s.id === shoeId);
-  if (shoe) {
-    res.json(shoe);
-  } else {
-    res.status(404).json({ message: 'Shoe not found' });
+// GET /shoe
+router.get("/", async (req, res, next) => {
+  try {
+    const shoe = await Shoe.findAll();
+    res.send(shoe);
+  } catch (error) {
+    next(error);
   }
 });
+
+
+router.get("/:id", async (req, res, next) => {
+  try {
+      const shoe = await Shoe.findByPk(req.params.id);
+      if (!shoe) {
+          throw new Error("No shoe found")
+      }
+      res.json(shoe)
+  } catch (error) {
+      next(error)
+  }
+});
+
+
 // CREATE /shoe
 router.post('/', async (req, res,next) => {
  try { 
@@ -28,6 +37,7 @@ router.post('/', async (req, res,next) => {
   next(error)
  }
 });
+
 
 // DELETE /shoe
 router.delete('/:id', async (req, res) => {
@@ -54,6 +64,5 @@ router.put('/:id', async (req, res) => {
   await shoe.save();
   res.send(shoe);
 });
-
 
 module.exports = router;
