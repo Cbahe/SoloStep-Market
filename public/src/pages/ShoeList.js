@@ -1,10 +1,10 @@
 import React from 'react';
 import { Shoe } from './Shoe';
 
-export const ShoeList = ({ shoes = [] }) => {
+export const ShoeList = ({ shoe = [] }) => {
   return (
     <div className="shoe-list">
-      {shoes.map((shoe, idx) =>(
+      {shoe.map((shoe, idx) =>(
         <Shoe shoe={shoe} key={idx}/>
       ))}
     </div>
