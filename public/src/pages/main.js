@@ -63,8 +63,7 @@ export const Main = () => {
     <main>
       <h1>SoloShoe Market</h1>
       <h2>All things Shoe</h2>
-      <SignUp />
-      <SignIn />
+      <ShoeList/>
       {sellShoe ? (
         <div className="shoe-detail">
           <h3>Name: {sellShoe.name}</h3>
@@ -76,7 +75,7 @@ export const Main = () => {
           <button onClick={() => deleteItem(sellShoe)}>Delete Item</button>
         </div>
       ) : (
-        <ShoeList items={shoe} onTitleClick={handleItemClick} />
+        <ShoeList/>
       )}
     </main>
   );
