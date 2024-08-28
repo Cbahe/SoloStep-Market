@@ -1,0 +1,36 @@
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20.x
+
+      - name: server
+        run: node server.js
+        working-directory: ./server
+
+
+      - name: server dependencies
+        run: npm ci
+        working-directory: ./server
+
+      - name: server test
+        run: npm run test
+        working-directory: ./server
+
+      - name: react dependencies
+        run: npm ci
+        working-directory: ./public
+
+      - run: npm ci
+      - run: npm run build
