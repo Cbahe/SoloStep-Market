@@ -7,4 +7,25 @@ const sequelize = new Sequelize({
     logging: false
 });
 
-module.exports = {sequelize}
+// Define the Shoe model
+class Shoe extends Model {}
+
+Shoe.init({
+    brand: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    size: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    color: {
+        type: DataTypes.STRING,
+        allowNull: false
+    }
+}, {
+    sequelize,
+    modelName: 'Shoe'
+});
+
+module.exports = { sequelize, Shoe };

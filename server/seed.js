@@ -1,6 +1,5 @@
 const { shoe } = require('./seedData.js');
-const { sequelize } = require('./db');
-const { Shoe } = require('./models');
+const { sequelize, Shoe } = require('./db'); // Ensure Shoe is imported from db.js
 
 const seed = async () => {
     try {
